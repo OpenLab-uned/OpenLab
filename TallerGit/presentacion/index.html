@@ -1,0 +1,711 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+
+    <title>OpenLab</title>
+
+    <meta name="Presentacion" content="OpenLab" />
+    <meta name="author" content="" />
+
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta
+      name="apple-mobile-web-app-status-bar-style"
+      content="black-translucent"
+    />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link rel="stylesheet" href="dist/reset.css" />
+    <link rel="stylesheet" href="dist/reveal.css" />
+    <link rel="stylesheet" href="dist/theme/black.css" id="theme" />
+
+    <link rel="stylesheet" href="plugin/highlight/monokai.css" />
+    <script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script>
+    <script>
+      mermaid.initialize({ startOnLoad: true, theme: "dark" });
+    </script>
+    <style>
+      .reveal,
+      body {
+        background-color: #101010 !important;
+      }
+    </style>
+    <style>
+      iframe {
+        width: 100%;
+        height: 75vh;
+        border: none;
+        border-radius: 12px;
+      }
+      .reveal h1,
+      .reveal h2,
+      .reveal h3 {
+        text-transform: none;
+      }
+    </style>
+
+    <style>
+      body {
+        background-color: #101010;
+        color: white;
+        font-family: sans-serif;
+        margin: 0;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        min-height: 100vh;
+        text-align: center;
+      }
+      .mermaid {
+        width: 100%;
+        max-width: 1000px;
+        font-size: 28px;
+      }
+      .overlay {
+        background: rgba(0, 0, 0, 0.45); /* oscurece detrás del texto */
+        color: #fff;
+        padding: 1.2rem 1.4rem;
+        border-radius: 12px;
+        display: inline-block;
+        max-width: 80ch;
+      }
+    </style>
+    <style>
+      .reveal,
+      body {
+        background-color: #101010 !important;
+      }
+    </style>
+    <style>
+      .reveal,
+      body {
+        background-color: #101010 !important;
+      }
+    </style>
+    <style>
+      :root {
+        --acento: #00e0ff;
+        --gris: #1a1a1a;
+      }
+      .reveal,
+      body {
+        background: #101010 !important;
+      }
+      .reveal h1,
+      .reveal h2,
+      .reveal h3,
+      .reveal h4 {
+        letter-spacing: 0.5px;
+      }
+      .reveal .slides section {
+        padding-top: 10px;
+      }
+      .byline {
+        color: #aaa;
+        font-size: 0.8em;
+        margin-top: 0.25rem;
+      }
+      .tag {
+        display: inline-block;
+        border: 1px solid var(--acento);
+        color: var(--acento);
+        padding: 0.15rem 0.4rem;
+        border-radius: 999px;
+        font-size: 0.55em;
+        margin: 0 0.25rem;
+      }
+      .grid-2 {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 24px;
+        align-items: start;
+      }
+      .grid-3 {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+        gap: 18px;
+        align-items: start;
+      }
+      .callout {
+        border-left: 3px solid var(--acento);
+        padding: 0.75rem 1rem;
+        background: rgba(0, 224, 255, 0.08);
+      }
+      .mini {
+        font-size: 0.8em;
+        color: #bbb;
+      }
+      .centered {
+        text-align: center;
+      }
+      .code-note {
+        color: #0ff;
+        font-size: 0.8em;
+        margin-top: 0.5rem;
+      }
+      .contrast-label {
+        font-size: 0.7em;
+        color: #0ff;
+        text-transform: uppercase;
+        letter-spacing: 0.08em;
+      }
+      pre code {
+        line-height: 1.25 !important;
+        font-size: 0.8em !important;
+      }
+      .bigcode pre code {
+        font-size: 0.9em !important;
+      }
+      table.comp {
+        width: 100%;
+        font-size: 0.8em;
+      }
+      table.comp th,
+      table.comp td {
+        padding: 0.4rem 0.6rem;
+        border-bottom: 1px solid #2a2a2a;
+        text-align: left;
+      }
+      .accent {
+        color: var(--acento);
+      }
+      .watermark {
+        position: absolute;
+        right: 20px;
+        bottom: 20px;
+        font-size: 0.7em;
+        color: #999;
+      }
+      .shadow {
+        text-shadow: 0 2px 12px rgba(0, 0, 0, 0.6);
+      }
+      .pill {
+        background: rgba(255, 255, 255, 0.06);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        padding: 0.25rem 0.6rem;
+        border-radius: 999px;
+        font-size: 0.65em;
+      }
+      .inset {
+        background: #0b0b0b;
+        border: 1px solid #222;
+        border-radius: 12px;
+        padding: 14px;
+      }
+      .big-code pre code {
+        font-size: 18px !important;
+      }
+      .big-code pre {
+        max-height: 100vh !important;
+      }
+      .hljs-keyword,
+      .hljs-built_in,
+      .hljs-selector-tag {
+        color: #00e0ff !important;
+      }
+      .hljs-number,
+      .hljs-literal {
+        color: #ffae00 !important;
+      }
+      .hljs-string {
+        color: #b0ff90 !important;
+      }
+      .hljs-comment {
+        color: #888 !important;
+        font-style: italic;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="reveal">
+      <!-- PRIMERA DIAPOSITIVA: TÍTULO -->
+      <div class="slides">
+        <section
+          class="big-code"
+          data-background-image="images/openlab.svg"
+          data-background-size="cover"
+        >
+          <div>
+            <h2 class="pill" style="color: white; background-color: #0b0b0b">
+              OpenLab
+            </h2>
+            <p class="pill" style="color: gwhite; background-color: #0b0b0b">
+              Espacio colaborativo de aprendizaje tecnológico
+            </p>
+          </div>
+        </section>
+        <section
+          data-background-video="video/openlabVideo.mp4"
+          data-background-video-muted
+          data-background-video-loop
+        >
+          <h4 class="inset">Objetivos</h4>
+          <ul class="inset">
+            <li class="pill">
+              Crear un espacio colaborativo para aprender tecnología
+            </li>
+            <li class="pill">
+              Fomentar la participación y realizar más actividades
+            </li>
+            <li class="pill">Promover el software libre</li>
+            <li class="pill">
+              Crear comunidad entre estudiantes de ingenierías
+            </li>
+          </ul>
+        </section>
+        <section
+          data-background-image="images/cartel instagram-1.png"
+          data-background-size="880px"
+        ></section>
+
+        <section
+          data-background-image="images/cartel A4-1.png"
+          data-background-size="800px"
+        ></section>
+
+        <section
+          data-background-video="video/openlabVideo.mp4"
+          data-background-video-muted
+          data-background-video-loop
+        ></section>
+        <!--Inicio Git-->
+        <section>
+          <h2>Taller de Git</h2>
+          <p>Parte teórica: qué es Git + historia de Git</p>
+          <img src="images/250px-Git-logo.svg.png" />
+        </section>
+
+        <section>
+          Sistema de control de versiones
+          <br />
+          <a href="http://lab.hakim.se/zoom-js"></a>
+          <img src="images/v123.jpg" />
+          <br />
+          <img src="images/ctrlZ.jpg" />
+        </section>
+
+        <section
+          data-background-image="images/NmU2Nw.png"
+          data-background-size="500px"
+        ></section>
+        <section
+          data-background-image="images/copiaGit.png"
+          data-background-size="1000px"
+        ></section>
+
+        <!-- Hacer una diapo sobre Git distribuido-->
+        <section
+          data-background-image="images/central12.jpg"
+          data-background-size="1600px"
+        ></section>
+        <section
+          data-background-image="images/tresEstados.png"
+          data-background-size="1000px"
+        ></section>
+        <section>
+          <h4>Índice</h4>
+          <ul>
+            <li>Fundamentos de Git</li>
+            <li>Ramificaciones</li>
+            <li>Flujo de trabajo</li>
+            <li>Entresijo internos de Git</li>
+          </ul>
+        </section>
+        <!--Página Web-->
+        <section style="padding: 20; margin: 600">
+          <a href="https://git-scm.com/">https://git-scm.com/</a>
+          <div
+            style="
+              width: 90%;
+              height: 70vh;
+              margin: 0 auto;
+              border: 1px solid #ccc;
+              border-radius: 20px;
+              overflow: hidden;
+            "
+          >
+            <iframe
+              src="https://git-scm.com/"
+              style="width: 100%; height: 100%; border: 0"
+            ></iframe>
+          </div>
+        </section>
+
+        <section>
+          <h5>Autenticación en Github con ssh</h5>
+          <pre><code>
+          ssh-keygen -t rsa -b 4096 -C "your_email@example.com"
+
+          eval "$(ssh-agent -s)"
+
+          ssh-add ~/.ssh/id_ed25519
+        </code></pre>
+          Luego copias la clave pública en settings >> SSH keys
+        </section>
+
+        <section>
+          <h5>Configuraciones generales</h5>
+          <pre><code>
+          # Configuracion
+          git --global user.name 
+          git config --global user.email
+          git config --list
+          git help config
+          
+          # Obtener ayuda
+          git --help
+          git help comando
+          man git
+        </code></pre>
+        </section>
+
+        <section>
+          <h5>Funcionamiento básico</h5>
+          <pre><code>
+          # iniciamos git
+          git init 
+          # creamos un archivo llamado License
+          # vemos el estado
+          git status
+          # añadimos eñ archivo
+          git add License
+          # vemos el estado
+          git status
+          # confirmamos cambios
+          git commit
+          # vemos el estado
+          git status
+        </code></pre>
+        </section>
+        <section
+          data-background-image="images/estados.png"
+          data-background-size="1000px"
+        ></section>
+        <section
+          data-background-image="images/estados.excalidraw.svg"
+          data-background-size="1000px"
+        ></section>
+        <section>
+          <h5>Deshaciendo cosas</h5>
+          <pre><code>
+  git reset HEAD archivo # saca del área de preparación: el archivo queda modificado no preparado
+  git checkout -- archivo # volver al estado en que estaba en la última confirmación
+  # Hack: nos movemos con un puntero, podemos rescatar archivos de versiones pasadas
+  git checkout commit --archivo
+  git checkout HEAD~1 -- archivo
+  # Deshacer el último commit
+  git reset --soft HEAD~1 # deja los cambios en preparación, no borra (digamos lectura pila no destructiva)
+  git reset --mixed HEAD~1 # los cambios previos quedan fuera del área de preparación
+  git reset --hard HEAD~1 # borra los cambios definitivamente (no se recomienda)
+  git revert commit # crea un nuevo commit con la confirmación anterior
+  git stash # guarda los cambios en el área stash, habrá que hacer stash pop para sacarlos
+  git rm # borra los archivos del repo y del disco 
+  git rm --cached # borra los cambios del repo pero no del disco
+  git rm -r carpeta # eliminación recursiva
+          </code></pre>
+        </section>
+        <section>
+          <h5>Otros comandos importantes</h5>
+          <pre><code>
+        # status resumido
+         git status -s
+         # ver los cambios
+         git diff
+         # ver las diferencias de los cambios añadidos no confirmados
+         git diff --staged
+         # herramienta gráfica para ver los cambioss
+         git difftool
+         # Importante: nos muestra la historia del repo
+         git log
+        </code></pre>
+        </section>
+
+        <section>
+          <h5>Trabajar con remotos</h5>
+          <pre><code>
+         # clonar repo de github (tambien se puede hacer por protocolo ssh)
+         git clone git@github.com:OpenLab-uned/OpenLab.git
+         # así vemos su historia
+         git log
+         # diferencias introducidas en cada version
+         git log -p
+         # muestra las últimas dos versiones
+         git log -2
+         # gráfico ASCII de ramificaciones y uniones
+         git log --online --graph
+         # URLs asociadas al repo remoto
+         git remote -v
+         # descarga los cambios del remoto
+         git fetch
+         # descarga y fusiona los cambios del remoto (fetch + merge)
+         git pull
+        # Envía tus commits locales al repositorio remoto 
+         git push
+        </code></pre>
+        </section>
+
+        <section>
+          <h5>Ramificacions: ¿Qué es una rama?</h5>
+          <img src="images/rama.jpg" style="width: 500px" />
+        </section>
+
+        <section>
+          <h5>Ramificaciones</h5>
+          <a href="https://learngitbranching.js.org/?locale=es_ES&NODEMO="
+            >https://learngitbranching.js.org/?locale=es_ES&NODEMO=</a
+          >
+          <pre><code>
+            # crear rama
+            git branch testing
+            # cambiar a esa rama
+            git checkout testing
+            # hacer algun cambio añadirlo y confirmarlo
+            git commit -a -m "made a change"
+            git checkout master
+            # visualización
+            git log --oneline --decorate --graph --all
+            # borrar una rama 
+            git branch -d nombre_rama
+          </code></pre>
+        </section>
+
+        <section>
+          <h5>Procedimientos básicos de fusión</h5>
+          <img src="images/mergeVSrebase.png" style="width: 1400px" />
+        </section>
+        <section>
+          <img src="images/merge.jpg" style="width: 3000px" />
+        </section>
+        <section>
+          <h5>Ramas remotas</h5>
+          <pre><code>
+            # publicar
+            git push origin main
+            # listar las ramas de seguimiento que tienes asignada
+            git remote -vv
+            # listar tus ramas locales incluyendo a qué siguen cada una
+            git branch -vv
+            # traer y fusionar
+            git pull # fetch + merge
+            # borrar rama remota
+            git push origin --delete rama_remota
+          </code></pre>
+        </section>
+        <section>
+          Os hago colaboradores del repo <strong>OpenLab</strong> y editamos
+          colaborativamente los siguientes archivos:
+          <br />
+          <br />
+          <code>COLABORATORS.md</code> y
+          <code>IDEAS.md</code>
+        </section>
+        <section>
+          <h5>Flujos de trabajo: ramas de larga duración</h5>
+          <img src="images/ramasLargaDuracion.png" style="width: 3000px" />
+        </section>
+        <section>
+          <h5>Flujos de trabajo: ramas puntuales</h5>
+          <img src="images/ramasPuntuales.png" style="width: 3000px" />
+        </section>
+        <section>
+          <h5>Metodología TPP: Todo Para Producción</h5>
+          <img src="images/TPP.png" style="width: 700px" />
+        </section>
+        <section>
+          <h5>Metodología TPP: Todo Para Producción para sistemas Online</h5>
+          <img src="images/TPPonline.png" style="width: 700px" />
+        </section>
+        <section>
+          <h5>Metodología GitFlow</h5>
+          <img src="images/gitflow.png" style="width: 450px" />
+        </section>
+
+        <section>
+          <h5>Metodología GitHub Flow</h5>
+          <img src="images/githubflow.png" style="width: 700px" />
+        </section>
+
+        <section>
+          <h5>Metodología: Administrador-Integración</h5>
+          <img src="images/integracion.png" style="width: 3000px" />
+        </section>
+        <section>
+          <h5>Metodología Dictador-Tenientes</h5>
+          <img src="images/tenientes.png" style="width: 3000px" />
+        </section>
+        <section>
+          <h5>Cómo está hecho</h5>
+          <img src="images/gitin.png" style="width: 350px" />
+        </section>
+        <section>Obtejos en git: blobs, trees, commits, tags</section>
+        <section>
+          <h5>Objetos blobs: contenido puro</h5>
+          <pre><code>
+        git init test
+        cd test 
+
+        # mira lo que hay en objects
+        find .git/objects -type f
+
+        # crea un blob directamente
+        echo "test content" | git hash-object -w --stdin
+        find .git/objects -type f 
+        # salida .git/objects/d6/70460b4b4aece5915caf5c68d12f560a9fe3e4
+
+        git cat-file -p d670460b4b4aece5915caf5c68d12f560a9fe3e4
+        # test content
+        git cat-file -t d670460b4b4aece5915caf5c68d12f560a9fe3e4
+        # blob
+        </code></pre>
+        </section>
+        <section>
+          <h5>Simulando control de versiones</h5>
+          <pre><code>
+          echo "version 1" > test.txt
+          git hash-object -w test.txt
+          # → 83baae61804e65cc73a7201a7252750c76066a30
+
+          echo "version 2" > test.txt
+          git hash-object -w test.txt
+          # → 1f7a7a472abf3dd9643fd615f6da379c4acb3e3a
+
+          find .git/objects -type f
+
+          # podemos "volver atrás" sin commits:
+          git cat-file -p 83baae... > test.txt
+          cat test.txt  # version 1
+
+          git cat-file -p 1f7a7a... > test.txt
+          cat test.txt  # version 2
+           </code></pre>
+        </section>
+        <section>
+          <h5>Objeto tree: simula un sist de archivos</h5>
+          <pre><code>
+      # añadimos al índice la versión 1 de test.txt fingiendo que está ahí
+      git update-index --add --cacheinfo 100644 \
+       83baae61804e65cc73a7201a7252750c76066a30 test.txt
+
+      # escribimos un tree a partir del índice
+      git write-tree
+       # → d8329fc1cc938780ffdd9f94e0d364e0ea74f579
+
+      git cat-file -p d8329fc1cc93...
+      # salida: 100644 blob 83baae61804e65cc73a7201a7252750c76066a30    test.txt
+
+      # preparamos mas archivos
+      echo "new file" > new.txt
+      git update-index test.txt
+      git update-index --add new.txt
+
+      git write-tree
+       # → otro SHA
+
+      git cat-file -p tree_nuevo
+      # 100644 blob sha_new  new.txt
+      # 100644 blob sha_v2   test.txt
+        </code></pre>
+        </section>
+        <section>
+          <h5>Objetos commit: el pegamento</h5>
+          <pre><code>
+        # primer commit
+        echo "first commit" | git commit-tree d8329fc1cc93...
+        # fdf4fc3344e67ab068f836878b6c4951e3b15f3d
+
+        git cat-file -p fdf4fc33...
+        # tree d8329fc1cc93...
+        # author ...
+        # committer ...
+        # first commit
+
+        echo "second commit" | git commit-tree tree2 -p fdf4fc33...
+        #  cac0cab538b9...
+
+        echo "third commit" | git commit-tree tree3 -p cac0cab...
+        #  1a410efbd135...
+
+        git log --stat 1a410e 
+          </code></pre>
+        </section>
+        <section>
+          <h5>Referencias: ramas, HEAD, remotos</h5>
+          <pre><code>
+      git update-ref refs/heads/main 1a410efbd13591db07496601ebc7a059dd55cfe9
+      git update-ref refs/heads/test cac0cab...
+      git log --oneline -graph -all
+
+      # remotos: ultima info que tienes de origin/main
+      cat .git/refs/remotes/origin/main
+        
+      cat .git/HEAD
+      # ref: refs/heads/master
+
+      git checkout test
+      cat .git/HEAD
+      # ref: refs/heads/test
+
+      # también podemos manipularla
+      git symbolic-ref HEAD refs/heads/master
+      git symbolic-ref HEAD
+      # refs/heads/master
+          </code></pre>
+        </section>
+        <section>
+          <h5>Refspecs y remotos: cómo decide Git qué traer/enviar</h5>
+          <pre><code>
+          [remote "origin"]
+          url = https://github.com/usuario/proyecto.git
+          fetch = +refs/heads/*:refs/remotes/origin/* 
+          </code></pre>
+        </section>
+        <section>
+          <h5>Cómo opera git en esencia</h5>
+          <ol>
+            <li>Crear objetos inmutables en .git/objects.</li>
+            <li>Mover referencias para apuntar a esos objetos.</li>
+            <li>Comprimir y optimizar esos objetos (gc, packs).</li>
+            <li>
+              Enviar y recibir objetos + refs con otros repos (fetch, push,
+              refspecs).
+            </li>
+          </ol>
+          <br />
+          <br />
+          Los comandos que usamos son combinaciones de todas estas operaciones
+          básicas.
+        </section>
+      </div>
+    </div>
+
+    <script src="dist/reveal.js"></script>
+    <script src="plugin/zoom/zoom.js"></script>
+    <script src="plugin/notes/notes.js"></script>
+    <script src="plugin/search/search.js"></script>
+    <script src="plugin/markdown/markdown.js"></script>
+    <script src="plugin/highlight/highlight.js"></script>
+    <script>
+      // Also available as an ES module, see:
+      // https://revealjs.com/initialization/
+      Reveal.initialize({
+        controls: true,
+        progress: true,
+        center: true,
+        hash: true,
+        transition: "convex",
+
+        // Learn about plugins: https://revealjs.com/plugins/
+        plugins: [
+          RevealZoom,
+          RevealNotes,
+          RevealSearch,
+          RevealMarkdown,
+          RevealHighlight,
+        ],
+      });
+    </script>
+  </body>
+</html>
