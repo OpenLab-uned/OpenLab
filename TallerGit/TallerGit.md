@@ -415,18 +415,14 @@ Las ramas que no hayan sido fusionadas nos dará problemas si intentamos borrarl
 Por la sencillez de la fusión a tres bandas de Git, el fusionar una rama a otra varias veces a lo largo del tiempo es fácil de hacer. Esto te posibilita tener varias ramas siempre abiertas, e irlas usando en diferentes etapas del ciclo de desarrollo; realizando fusiones frecuentes entre ellas.
 
 Muchos desarrolladores que usan Git llevan un flujo de trabajo de esta naturaleza, manteniendo en la rama `master` únicamente el código totalmente estable (el código que ha sido o que va a ser liberado) y teniendo otras ramas paralelas denominadas `desarrollo` o `siguiente`, en las que trabajan y realizan pruebas. Estas ramas paralelas no suelen estar siempre en un estado estable; pero cada vez que sí lo están, pueden ser fusionadas con la rama `master`. También es habitual el incorporarle (pull) ramas puntuales cuando las completamos y estamos seguros de que no van a introducir errores.
-
-![[Pasted image 20251122045641.png]]
-
+![](presentacion/images/ramasLargaDuracion.png)
 
 Este sistema de trabajo se puede ampliar para diversos grados de estabilidad. Algunos proyectos muy grandes suelen tener una rama denominada `propuestas` o `pu` (del inglés “proposed updates”, propuesta de actualización), donde suele estar todo aquello que es integrado desde otras ramas, pero que aún no está listo para ser incorporado a las ramas `siguiente` o `master`. La idea es mantener siempre diversas ramas en diversos grados de estabilidad; pero cuando alguna alcanza un estado más estable, la fusionamos con la rama inmediatamente superior a ella. Aunque no es obligatorio el trabajar con ramas de larga duración, realmente es práctico y útil, sobre todo en proyectos largos o complejos.
 
 **Ramas Puntuales**
 Las ramas puntuales, en cambio, son útiles en proyectos de cualquier tamaño. Una rama puntual es aquella rama de corta duración que abres para un tema o para una funcionalidad determinada. Esta técnica te posibilita realizar cambios de contexto rápidos y completos y, debido a que el trabajo está claramente separado en silos, con todos los cambios de cada tema en su propia rama, te será mucho más sencillo revisar el código y seguir su evolución. Puedes mantener los cambios ahí durante minutos, días o meses; y fusionarlos cuando realmente estén listos, sin importar el orden en el que fueron creados o en el que comenzaste a trabajar en ellos.
-![[Pasted image 20251122050311.png]]
+![](presentacion/images/ramasPuntuales.png)
 
-
-![[Pasted image 20251122050436.png]]
 
 Es importante recordar que, mientras estás haciendo todo esto, todas las ramas son completamente locales. Cuando ramificas y fusionas, todo se realiza en tu propio repositorio Git. No hay ningún tipo de comunicación con ningún servidor.
 
@@ -538,7 +534,8 @@ Debido a que Git permite tener múltiples repositorios remotos, es posible tener
 5. El administrador agrega el repositorio del contribuidor como remoto y fusiona ambos localmente.
 6. El administrador realiza un push con la fusión del código al repositorio principal.
 
-![[Pasted image 20251123151341.png]]
+![](presentacion/images/integracion.png)
+
 Este es un flujo de trabajo muy común con herramientas basadas en hubs como GitHub o GitLab, donde es fácil hacer un fork de un proyecto e introducir los cambios en este fork para que todos puedan verlos. Una de las principales ventajas de este enfoque es que el contribuidor puede continuar realizando cambios y el administrador principal del repositorio puede incorporar los cambios en cualquier momento. Los contribuidores no tienen que esperar a que el proyecto incorpore sus cambios; cada parte puede trabajar a su propio ritmo.
 
 **Flujo de Trabajo Dictador-Tenientes**
@@ -549,7 +546,7 @@ Esta es una variante de un flujo de trabajo de múltiples repositorios. Generalm
 3. El dictador fusiona la rama `master` de los tenientes a su rama `master` de dictador.
 4. El dictador hace push del contenido de su rama `master` al repositorio para que otros fusionen los cambios a sus ramas.
 
-![[Pasted image 20251123152139.png]]
+![](presentacion/images/tenientes.png)
 
 Este tipo de flujo de trabajo no es común, pero puede ser útil en proyectos muy grandes o en entornos altamente jerárquicos. Permite al líder del proyecto (el dictador) delegar gran parte del trabajo y recopilar grandes subconjuntos de código en múltiples puntos antes de integrarlos.
 
@@ -561,7 +558,8 @@ En primer lugar, no desea enviar ningún error de espacios en blanco. Git propor
 
 **Metodología TPP**
 
-![[Pasted image 20251123182046.png]]
+![](presentacion/images/TPP.png)
+
 En esta sencilla metodología mantenemos sólo una rama activa, llámese _master_ o [_main_](https://github.com/github/renaming).
 
 - Sacamos una rama para hacer un arreglo (_fix_) o una nueva funcionalidad (_feature_).
@@ -577,7 +575,8 @@ En esta sencilla metodología mantenemos sólo una rama activa, llámese _maste
 Para sistemas online no necesitamos mantener múltiples versiones; basta con mantener una única versión viva que es la que mantenemos en _master_.
 
 Una variante muy relevante en este caso consiste en mantener una rama adicional estable, donde mezclamos sólo el código que pasa las pruebas. Esta rama se puede llamar _stable_, _prod_ o similar. Desplegaremos a producción siempre desde la rama estable.
-![[Pasted image 20251123182926.png]]
+![](presentacion/images/TPPonline.png)
+
 En este caso las etiquetas o _tags_ son menos importantes e incluso se pueden omitir. Para desplegar simplemente hacemos un `git pull`, y si es necesario lanzamos un build.
 
 **GitFlow**
@@ -589,17 +588,16 @@ Esta metodología se liberó en 2010 y tuvo bastante éxito en múltiples ámbit
 - una rama _develop_ para desarrollo,
 - y otra rama _hotfixes_ para arreglos rápidos.
 
-![[Pasted image 20251123183216.png]]
+![](presentacion/images/gitflow.png)
 
 El esfuerzo para mantener tantísimas ramas sólo es posible para grandes organizaciones con un montón de recursos.
 
 **GitHub Flow**
 En esta metodología [propuesta por GitHub](https://docs.github.com/en/free-pro-team@latest/github/collaborating-with-issues-and-pull-requests/github-flow) se trabaja de forma similar: se crea rama, se añaden cambios, se revisan y se mezclan.
-![[Pasted image 20251123183516.png]]
+
+![](presentacion/images/githubflow.png)
+
 Podemos ver en [la guía gráfica](https://docs.github.com/en/free-pro-team@latest/github/collaborating-with-issues-and-pull-requests/github-flow) la diferencia más radical con TPP: en GitHub Flow **se hacen los despliegues desde la rama**, antes de mezclar. Esto tiene el gran problema de que es posible que haya cambios en _main_ que no se van a desplegar, ya que no están en la rama; hay que asegurarse de hacer un `git pull origin main` antes de desplegar y mezclar.
-
-**Git en entornos distribuidos: manteniendo un proyecto**
-
 
 
 #### Los entresijos internos de Git
@@ -670,5 +668,91 @@ echo 'new file' > new.txt
 git update-index test.txt
 git update-index --add new.txt
 ```
-El área de preparación contendrá ahora la nueva versión de test.txt, así como el nuevo archivo new.txt. Escribiendo este árbol, (guardando el estado del área de preparación o índice), podrás ver que aparece algo así como:
+El área de preparación contendrá ahora la nueva versión de test.txt, así como el nuevo archivo new.txt. 
+
+**Objetos commit**
+Un commit apunta a un tree y a sus padres.
+
+```bash
+# primer commit
+echo "first commit" | git commit-tree d8329fc1cc93...
+# fdf4fc3344e67ab068f836878b6c4951e3b15f3d
+
+git cat-file -p fdf4fc33...
+# tree d8329fc1cc93...
+# author ...
+# committer ...
+# first commit
+
+echo "second commit" | git commit-tree tree2 -p fdf4fc33...
+#  cac0cab538b9...
+
+echo "third commit" | git commit-tree tree3 -p cac0cab...
+#  1a410efbd135...
+
+git log --stat 1a410e
+```
+
+Cada commit es inmutable: su hash depende del tree, padres, autor, mensaje…Cambia cualquier detalle → cambia el hash → para Git es otro commit. La “historia” es un grafo de commits enlazados por los parent.
+
+**Referencias: ramas, HEAD, remoto**
+Una rama es solo un archivo de texto que contiene el SHA de un commit.
+
+```bash
+git update-ref refs/heads/main 1a410efbd13591db07496601ebc7a059dd55cfe9
+git update-ref refs/heads/test cac0cab...
+git log --oneline -graph -all
+
+# remotos: ultima info que tienes de origin/main
+cat .git/refs/remotes/origin/main 
+```
+
+Una rama no es una copia, ni un directorio. Es un puntero a un commit. Por eso crear ramas y moverlas es baratísimo.
+
+ **HEAD: donde estás**
+
+```bash
+cat .git/HEAD # ref: refs/heads/master  git checkout test cat .git/HEAD # ref: refs/heads/test  
+# también podemos manipularla 
+git symbolic-ref HEAD refs/heads/master git symbolic-ref HEAD 
+# refs/heads/master
+```
+ 
+Cuando hace `git commit` crea un commit con padre = SHA apuntado por HEAD y luego actualiza la ref a la que apunta HEAD (la rama). HEAD evita muchos sustos con `reset`, `checkout`, etc. HEAD te dice qué se va a mover cuando comites o resetees.
+
+ **Almacenamiento: objetos y packfiles**
+Inicialmente todo se guarda como objeto suelto. Pero cuando el repo crece, Git empaqueta objetos similares, guarda deltas entre versiones y agrupa todo en archivos .pack + .idx. Los repos grandes con histoias largas siguen siendo rápidos porque el almacenamiento está comprimido.
+
+`git gc` es el limpiador y compactador interno de Git. Cuando los repos se hacen grandes, los mete en un packfile que contiene duplicados, blobs comprimidos, árboles comprimidos y objetos almacenados como deltas
+
+ **Refspecs** y remotos: cómo decide Git qué traer/enviar
+La refspec define cómo mapear refs remotas. En `.git/config`:
+
+```bash
+[remote "origin"]
+url = https://github.com/usuario/proyecto.git
+fetch = +refs/heads/*:refs/remotes/origin/*   
+```
+
+Trae todas las ramas del remoto y las guarda localmente en esa ruta.  
+
+ **Variables de entorno**
+Algunas variables afectan directamente cómo opera Git:
+
+- `GIT_DIR`
+- `GIT_WORK_TREE` ruta del working directory
+- `GIT_AUTHOR_NAME, GIT_AUTHOR_EMAIL, GIT_AUTHOR_DATE`
+- `GIT_COMMITTER_NAME, GIT_COMMITTER_EMAIL, GIT_COMMITTER_DATE`
+- `GIT_TRACE, GIT_TRACE_PERFORMANCE` logs de depuración y rendimiento  
+
+ **Cómo Git opera en esencia**
+Todo lo que hace Git se puede reducir a:
+
+1. Crear objetos (blob, tree, commit, tag) inmutables en .git/objects.
+2. Mover referencias (refs/heads/**, refs/tags/**, HEAD) para apuntar a esos objetos.
+3. Comprimir y optimizar esos objetos (gc, packs).
+4. Enviar y recibir objetos + refs con otros repos (fetch, push, refspecs).
+
+**Los comandos de porcelana serán combinaciones de todas estas operaciones básicas.**
+
 

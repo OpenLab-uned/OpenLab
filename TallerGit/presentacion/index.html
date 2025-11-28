@@ -398,6 +398,23 @@
           data-background-image="images/estados.excalidraw.svg"
           data-background-size="1000px"
         ></section>
+
+        <section>
+          <h5>Otros comandos importantes</h5>
+          <pre><code>
+        # status resumido
+         git status -s
+         # ver los cambios
+         git diff
+         # ver las diferencias de los cambios añadidos no confirmados
+         git diff --staged
+         # herramienta gráfica para ver los cambioss
+         git difftool
+         # Importante: nos muestra la historia del repo
+         git log
+        </code></pre>
+        </section>
+
         <section>
           <h5>Deshaciendo cosas</h5>
           <pre><code>
@@ -416,21 +433,6 @@
   git rm --cached # borra los cambios del repo pero no del disco
   git rm -r carpeta # eliminación recursiva
           </code></pre>
-        </section>
-        <section>
-          <h5>Otros comandos importantes</h5>
-          <pre><code>
-        # status resumido
-         git status -s
-         # ver los cambios
-         git diff
-         # ver las diferencias de los cambios añadidos no confirmados
-         git diff --staged
-         # herramienta gráfica para ver los cambioss
-         git difftool
-         # Importante: nos muestra la historia del repo
-         git log
-        </code></pre>
         </section>
 
         <section>
@@ -576,20 +578,22 @@
           <pre><code>
           echo "version 1" > test.txt
           git hash-object -w test.txt
-          # → 83baae61804e65cc73a7201a7252750c76066a30
+          # 83baae61804e65cc73a7201a7252750c76066a30
 
           echo "version 2" > test.txt
           git hash-object -w test.txt
-          # → 1f7a7a472abf3dd9643fd615f6da379c4acb3e3a
+          # 1f7a7a472abf3dd9643fd615f6da379c4acb3e3a
 
           find .git/objects -type f
 
           # podemos "volver atrás" sin commits:
           git cat-file -p 83baae... > test.txt
-          cat test.txt  # version 1
+          cat test.txt  
+          # version 1
 
           git cat-file -p 1f7a7a... > test.txt
-          cat test.txt  # version 2
+          cat test.txt  
+          # version 2
            </code></pre>
         </section>
         <section>
@@ -601,7 +605,7 @@
 
       # escribimos un tree a partir del índice
       git write-tree
-       # → d8329fc1cc938780ffdd9f94e0d364e0ea74f579
+       # d8329fc1cc938780ffdd9f94e0d364e0ea74f579
 
       git cat-file -p d8329fc1cc93...
       # salida: 100644 blob 83baae61804e65cc73a7201a7252750c76066a30    test.txt
@@ -612,7 +616,7 @@
       git update-index --add new.txt
 
       git write-tree
-       # → otro SHA
+       # otro SHA
 
       git cat-file -p tree_nuevo
       # 100644 blob sha_new  new.txt
@@ -644,8 +648,10 @@
         <section>
           <h5>Referencias: ramas, HEAD, remotos</h5>
           <pre><code>
-      git update-ref refs/heads/main 1a410efbd13591db07496601ebc7a059dd55cfe9
-      git update-ref refs/heads/test cac0cab...
+      git update-ref refs/heads/main 
+      # 1a410efbd13591db07496601ebc7a059dd55cfe9
+      git update-ref refs/heads/test 
+      # cac0cab...
       git log --oneline -graph -all
 
       # remotos: ultima info que tienes de origin/main
