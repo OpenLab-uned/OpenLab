@@ -216,6 +216,11 @@
         color: #888 !important;
         font-style: italic;
       }
+      .contenedor img {
+        width: 60%; /* ocupa todo el ancho disponible */
+        margin-bottom: 10px; /* espacio entre imágenes */
+        border-radius: 6px; /* opcional */
+      }
     </style>
   </head>
 
@@ -300,10 +305,22 @@
         ></section>
 
         <!-- Hacer una diapo sobre Git distribuido-->
-        <section
-          data-background-image="images/central12.jpg"
-          data-background-size="1600px"
-        ></section>
+        <section>
+          <a href="http://lab.hakim.se/zoom-js"></a>
+          <div class="contenedor">
+            <img
+              src="images/centralized.png"
+              alt="Imagen 1"
+              style="width: 300px"
+            />
+            <br />
+            <img
+              src="images/distributed.png"
+              alt="Imagen 2"
+              style="width: 300px"
+            />
+          </div>
+        </section>
         <section
           data-background-image="images/tresEstados.png"
           data-background-size="1000px"
