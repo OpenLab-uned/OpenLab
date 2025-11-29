@@ -1,3 +1,6 @@
 # COLABORADORES
 
+- Lara
+- Ines
+- Carol
 
